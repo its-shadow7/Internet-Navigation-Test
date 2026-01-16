@@ -1,5 +1,5 @@
 let lives = 3;
-let current_level = 1;
+let current_level = 0;
 
 const gameArea = document.querySelector(".game-area");
 const body = document.querySelector("body");
@@ -584,3 +584,4 @@ const levels=[{
 // }]
 
 start_game();
+
