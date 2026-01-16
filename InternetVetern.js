@@ -1,5 +1,5 @@
 let lives = 3;
-let current_level = 0;
+let current_level = 1;
 
 const gameArea = document.querySelector(".game-area");
 const body = document.querySelector("body");
