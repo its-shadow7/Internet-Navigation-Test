@@ -94,7 +94,7 @@ const levels=[{
 },{
     name : "Find Real Download",
     html : `<div class="container">
-            <div class="level-text" style="font-size: 18px;">Level 1: Find the Real Download</div>
+            <div class="level-text" style="font-size: 18px;">Level 2: Find the Real Download</div>
           <h2 style="color: #d32f2f; text-align: center; font-family: sans-serif; margin: 0 0 20px 0; font-size: 24px;">Select Carefully!!!!!!</h2>
           <button class="bar-btn" type="button" onclick="damage()">
             <span class="bar-btn__text">Download Now</span>
@@ -192,7 +192,7 @@ const levels=[{
     {
       name : "Cookies",
       html : `<div class="container">
-            <div class="level-text" style="font-size: 18px; margin-bottom: 20px;">Level 2: Cookies</div>
+            <div class="level-text" style="font-size: 18px; margin-bottom: 20px;">Level 3: Cookies</div>
       
             <h2 style="font-family: sans-serif; margin-bottom: 20px;">Do you like cookies?<br>
               <img src="https://cdn-icons-png.flaticon.com/512/5473/5473473.png" height="50px" width="50px"></h2>
@@ -207,7 +207,7 @@ const levels=[{
     }, {
     name: "Unsubscribe",
     html: `<div class="container">
-            <div class="level-text">Level 5: Unsubscribe</div>
+            <div class="level-text">Level 4: Unsubscribe</div>
                         
             <div style="background: white; padding: 20px; border-radius: 10px; border: 1px solid #ccc; text-align: center; width: 300px;">
                 <img src="https://cdn-icons-png.flaticon.com/512/1076/1076928.png" height="60px" style="margin-bottom: 15px;">
@@ -253,7 +253,7 @@ const levels=[{
 }, {
     name: "Catch Me",
     html: `<div class="container" style="width: 100%; height: 100%; overflow: hidden; position: relative;">
-            <div class="level-text">Level 15: Catch the Button</div>
+            <div class="level-text">Level 6: Catch the Button</div>
             
             <p style="margin-bottom: 20px;">Click the green button to continue.</p>
 
@@ -273,7 +273,7 @@ const levels=[{
                 color: #ccc; 
                 font-size: 80px; 
                 font-weight: bold; 
-                opacity: 0.1; 
+                opacity: 0.09; 
                 cursor: pointer;
                 z-index: 1;">
                 GIVE UP
@@ -282,69 +282,6 @@ const levels=[{
             <p style="position: absolute; bottom: 5px; width: 100%; text-align: center; font-size: 10px; color: #999;">
                 (Sometimes the only way to win is to stop trying)
             </p>
-        </div>`
-},{
-    name: "Shuffling Keypad",
-    html: `<div class="container">
-            <div class="level-text">Level 20: Robot Check</div>
-            
-            <div style="background: white; padding: 20px; border: 1px solid #ccc; border-radius: 10px; text-align: center;">
-                <h2 style="margin-top: 0;">3 + 4 = ?</h2>
-                
-                <div id="keypad" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; width: 200px;">
-                    <button class="num-btn" onclick="damage()">1</button>
-                    <button class="num-btn" onclick="damage()">2</button>
-                    <button class="num-btn" onclick="damage()">3</button>
-                    <button class="num-btn" onclick="damage()">4</button>
-                    <button class="num-btn" onclick="damage()">5</button>
-                    <button class="num-btn" onclick="damage()">6</button>
-                    
-                    <button class="num-btn" onclick="win()" style="background: #e8f0fe; color: #1967d2;">7</button>
-                    
-                    <button class="num-btn" onclick="damage()">8</button>
-                    <button class="num-btn" onclick="damage()">9</button>
-                </div>
-            </div>
-
-            <script>
-                // We use a MutationObserver or simply add event listeners to the container
-                // But since this is an HTML string injection, we can use a mouseover on the wrapper
-            </script>
-            
-            <div onmouseover="
-                const container = this.previousElementSibling.querySelector('#keypad');
-                for (let i = container.children.length; i >= 0; i--) {
-                    container.appendChild(container.children[Math.random() * i | 0]);
-                }
-            " style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none;">
-                </div>
-
-            <style>
-                .num-btn {
-                    padding: 15px;
-                    font-size: 18px;
-                    cursor: pointer;
-                    background: #eee;
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                }
-                /* Shuffle trigger on hover */
-                .num-btn:hover {
-                    /* This is a CSS hack to make them feel 'unstable' */
-                    transform: scale(0.95);
-                }
-            </style>
-            
-            <div 
-                onmouseenter="
-                    const k = document.getElementById('keypad');
-                    /* Shuffle children */
-                    for (let i = k.children.length; i >= 0; i--) {
-                        k.appendChild(k.children[Math.random() * i | 0]);
-                    }
-                "
-                style="position: absolute; top: 0; left: 0; width: 100%; height: 10px; /* Trigger bar at top just to mess with them initially */">
-            </div>
         </div>`
 },{
     name: "Vegetable Captcha",
@@ -369,8 +306,8 @@ const levels=[{
                         <div class="img-wrap"><img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=200&h=200&fit=crop"></div>
                         <div class="check-mark"></div>
                     </div>
-                    <div class="cap-tile" onclick="this.classList.toggle('selected')" data-type="veg">
-                        <div class="img-wrap"><img src="https://www.buywesteatbest.org.au/wp-content/uploads/2024/06/broc-Large-Medium-614x484.png?w=200&h=200&fit=crop"></div>
+                    <div class="cap-tile" onclick="this.classList.toggle('selected')" data-type="fruit">
+                        <div class="img-wrap"><img src="https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2013/9/16/0/Where_do_pumpkins_grow_overhead_view_on_vine_s4x3.jpg.rend.hgtvcom.1280.720.85.suffix/1400982091403.webp"></div>
                         <div class="check-mark"></div>
                     </div>
                     <div class="cap-tile" onclick="this.classList.toggle('selected')" data-type="seed">
@@ -399,8 +336,8 @@ const levels=[{
                          </div>
                          <div class="check-mark"></div>
                     </div>
-                    <div class="cap-tile" onclick="this.classList.toggle('selected')" data-type="fruit">
-                         <div class="img-wrap"><img src="https://santhionlineplants.com/cdn/shop/files/lemon-grass-1-600x600.jpg?v=1756707978"></div>
+                    <div class="cap-tile" onclick="this.classList.toggle('selected')" data-type="veg">
+                         <div class="img-wrap"><img src="https://plantix.net/en/library/assets/custom/crop-images/onion.jpeg"></div>
                          <div class="check-mark"></div>
                     </div>
                 </div>
@@ -499,6 +436,64 @@ const levels=[{
     }]
 
 // const levels = [{
+//     name: "Shuffling Keypad",
+//     html: `<div class="container">
+//             <div class="level-text">Level 7: Robot Check</div>
+            
+//             <div style="background: white; padding: 20px; border: 1px solid #ccc; border-radius: 10px; text-align: center;">
+//                 <h2 style="margin-top: 0;">3 + 4 = ?</h2>
+                
+//                 <div id="keypad" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; width: 200px;">
+//                     <button class="num-btn" onclick="damage()">1</button>
+//                     <button class="num-btn" onclick="damage()">2</button>
+//                     <button class="num-btn" onclick="damage()">3</button>
+//                     <button class="num-btn" onclick="damage()">4</button>
+//                     <button class="num-btn" onclick="damage()">5</button>
+//                     <button class="num-btn" onclick="damage()">6</button>
+                    
+//                     <button class="num-btn" onclick="win()" style="background: #e8f0fe; color: #1967d2;">7</button>
+                    
+//                     <button class="num-btn" onclick="damage()">8</button>
+//                     <button class="num-btn" onclick="damage()">9</button>
+//                 </div>
+//             </div>
+            
+//             <div onmouseover="
+//                 const container = this.previousElementSibling.querySelector('#keypad');
+//                 for (let i = container.children.length; i >= 0; i--) {
+//                     container.appendChild(container.children[Math.random() * i | 0]);
+//                 }
+//             " style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none;">
+//                 </div>
+
+//             <style>
+//                 .num-btn {
+//                     padding: 15px;
+//                     font-size: 18px;
+//                     cursor: pointer;
+//                     background: #eee;
+//                     border: 1px solid #ccc;
+//                     border-radius: 5px;
+//                 }
+//                 /* Shuffle trigger on hover */
+//                 .num-btn:hover {
+//                     /* This is a CSS hack to make them feel 'unstable' */
+//                     transform: scale(0.95);
+//                 }
+//             </style>
+            
+//             <div 
+//                 onmouseenter="
+//                     const k = document.getElementById('keypad');
+//                     /* Shuffle children */
+//                     for (let i = k.children.length; i >= 0; i--) {
+//                         k.appendChild(k.children[Math.random() * i | 0]);
+//                     }
+//                 "
+//                 style="position: absolute; top: 0; left: 0; width: 100%; height: 10px; /* Trigger bar at top just to mess with them initially */">
+//             </div>
+//         </div>`
+// },{
 //     name: "Software Installer",
 //     html: `<div class="container" style="text-align: left; align-items: flex-start; padding: 20px; width: 80%;">
 //             <div class="level-text">Level 3: Setup Wizard</div>
