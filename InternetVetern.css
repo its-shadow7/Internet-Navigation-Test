@@ -1,0 +1,326 @@
+body{
+    background-color: rgb(255, 244, 228);
+}
+
+nav {
+    display: flex;             
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;       
+    padding: 0 20px;
+    position: relative;
+}
+
+.title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    text-align: center;
+}
+
+.Lives{
+    background-color: black;
+    color: white;
+    border-radius: 20px;
+    padding: 8px 16px;      
+    font-weight: bold;       
+    font-size: 14px;
+    white-space: nowrap;     
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.game-area {
+    position: relative;
+    width: 90%;
+    max-width: 800px;    
+    height: 550px;
+    margin: 30px auto;   
+    
+    background-color: #f0f0f0; 
+    border: 2px solid #ccc;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    display: flex;             
+    justify-content: center;   
+    align-items: center;
+    gap: 20px;   
+}
+
+
+h2{
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: fit-content;
+    align-items: center; 
+}
+
+/*Download Btn Animtions From Uiverse.io by andrew-demchenk0 */
+.bar-btn {
+    position: relative;
+    width: 170px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    margin-top: 10px;
+    align-items: center;
+    border: 1px solid #17795E;
+    background-color: #209978;
+    overflow: hidden;
+    padding: 0; 
+}
+.bar-btn, .bar-btn__icon, .bar-btn__text {
+    transition: all 0.3s;
+}
+.bar-btn .bar-btn__text {
+    transform: translateX(22px);
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%; 
+    text-align: left;
+}
+.bar-btn .bar-btn__icon {
+    position: absolute;
+    right: 0;
+    transform: translateX(0); 
+    height: 100%;
+    width: 39px;
+    background-color: #17795E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bar-btn:hover {
+    background: #17795E;
+}
+.bar-btn:hover .bar-btn__text {
+    color: transparent; 
+}
+.bar-btn:hover .bar-btn__icon {
+    width: 100%; 
+    background-color: #17795E;
+    justify-content: center;
+}
+.bar-btn:active .bar-btn__icon {
+    background-color: #146c54;
+}
+.bar-btn:active {
+    border: 1px solid #146c54;
+}
+.bar-btn .svg {
+    width: 20px;
+    fill: #fff;
+}
+
+
+/* Animations for Links */
+.link {
+    font-size: 14px;
+    color: #666;
+    margin-top: 15px;
+}
+
+.link-blue {
+    color: #0000EE;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.link-blue:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+.link-blue:active {
+    color: #551A8B;
+}
+
+
+/* Damage Animations */
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.damage-effect {
+    animation: shake 0.5s; 
+    box-shadow: 0 0 50px red inset;
+    border-color: red !important;
+    filter: contrast(120%) saturate(120%);   
+}
+
+
+/* The Tiny Real Button (Now hidden in the corner) */
+.tiny-links {
+    background: none;
+    border: none;
+    color: #999;       /* Light grey to blend in */
+    font-size: 11px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 5px;
+    
+    /* --- NEW POSITIONING LOGIC --- */
+    position:absolute;  /* Breaks it out of the flex stack */
+    bottom: 15px;        /* 15px from the bottom */
+    right: 15px;         /* 15px from the right */
+    opacity: 0.2;        
+    height: fit-content;
+}
+
+.tiny-links:hover {
+    color: black !important;
+    opacity: 1 !important;      /* Fully visible when hovered */
+}
+
+
+/*3rd buttons animations From Uiverse.io by andrew-demchenk0 */
+.button-3d {
+  border: none;
+  outline: none;
+  background-color: #209978;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 5px;
+  transition: all ease 0.1s;
+  box-shadow: 0px 5px 0px 0px #146c54;
+  cursor: pointer;
+}
+
+.button-3d:active {
+  transform: translateY(5px);
+  box-shadow: 0px 0px 0px 0px #a29bfe;
+}
+
+.white-btn{
+    background-color:#f1f1f1; 
+    color:#333;
+    box-shadow: 0px 5px 0px 0px lightgray;
+}
+
+
+.level-text {
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: black;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+/* --- LEVEL 0: ROBOT CHECK --- */
+/* The Popup Box */
+.popup-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    text-align: center;
+    width: 320px;
+    z-index: 100;
+    font-family: 'Arial', sans-serif;
+    border: 1px solid #ddd;
+}
+
+.close-x {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+}
+
+/* Background Blur helper */
+.blur-content {
+    filter: blur(5px);
+    pointer-events: none;
+    opacity: 0.5;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: #888;
+}
+
+/*Animation for buttons appearing after a while */
+@keyframes revealBtn {
+    0%   { opacity: 0; pointer-events: none; }
+    99%  { opacity: 0; pointer-events: none; }
+    100% { opacity: 1; pointer-events: auto; }
+}
+
+
+/* CSS for captcha */
+.cap-tile {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    position: relative;
+}
+.img-wrap {
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s ease;
+}
+.cap-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.check-mark {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 22px;
+    height: 22px;
+    background: #4A90E2;
+    border-radius: 50%;
+    display: none; /* Hidden */
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    z-index: 10;
+}
+.check-mark::after {
+    content: '';
+    display: block;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    margin-bottom: 2px;
+}
+.cap-tile.selected .img-wrap {
+    transform: scale(0.85); 
+}
+.cap-tile.selected .check-mark {
+    display: flex;
+}
+
