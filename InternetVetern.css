@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+
 body{
     background-color: rgb(255, 244, 228);
 }
@@ -19,14 +22,223 @@ nav {
     text-align: center;
 }
 
-.Lives{
-    background-color: black;
-    color: white;
-    border-radius: 20px;
-    padding: 8px 16px;      
-    font-weight: bold;       
-    font-size: 14px;
-    white-space: nowrap;     
+
+
+/* --- Social Icons (Left) --- */
+.social-left {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.social-left a {
+    transition: transform 0.2s;
+    opacity: 0.7;
+    display: flex;
+}
+.social-left a:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+/* --- Buy Me a Coffee Button --- */
+.bmc-btn {
+  background-color: #FFDD00 !important; /* Official Yellow */
+  color: #000000 !important;            /* Black Text */
+  font-family: 'Cookie', cursive !important;
+  font-size: 26px;      
+  line-height: 26px;    
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;    /* Tweak padding for perfect height */
+  border-radius: 50px;
+  border: none !important;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1); /* Subtle shadow like the original */
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.bmc-btn img {
+  height: 24px;
+  width: auto;
+}
+.bmc-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+  opacity: 0.95;
+}
+.bmc-btn span { margin: 0; }
+.bmc-btn::before { display: none; }
+
+
+/* --- GitHub Button --- */
+.github-btn {
+  background-color: white;
+  position: relative;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid black;       /* Black Border */
+  border-radius: 25px;
+  outline: none;
+  overflow: hidden;
+  color: black;                  /* Black Text */
+  transition: color 0.3s 0.1s ease-out;
+  text-align: center;
+  font-family: sans-serif;
+  margin-right: 10px;           /* Gap between buttons */
+}
+.github-btn span { margin: 10px; }
+
+/* The Fill Animation */
+.github-btn::before {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  margin: auto;
+  content: '';
+  border-radius: 50%;
+  display: block;
+  width: 20em; height: 20em;
+  left: -5em;
+  text-align: center;
+  transition: box-shadow 0.5s ease-out;
+  z-index: -1;
+}
+.github-btn:hover {
+  color: #fff;
+  border: 1px solid #333;
+}
+.github-btn:hover::before {
+  box-shadow: inset 0 0 0 10em #333; /* Fills with Black */
+}
+
+
+/* --- LinkedIn Button (Blue) --- */
+.linkedin-btn {
+    background-color: transparent;
+    background-color: white;
+  position: relative;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid #0077b5;    /* LinkedIn Blue Border */
+  border-radius: 25px;
+  outline: none;
+  overflow: hidden;
+  color: #004182;               /* LinkedIn Blue Text */
+  transition: color 0.3s 0.1s ease-out;
+  text-align: center;
+  font-family: sans-serif;
+}
+.linkedin-btn span { margin: 10px; }
+
+/* The Fill Animation */
+.linkedin-btn::before {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  margin: auto;
+  content: '';
+  border-radius: 50%;
+  display: block;
+  width: 20em; height: 20em;
+  left: -5em;
+  text-align: center;
+  transition: box-shadow 0.5s ease-out;
+  z-index: -1;
+}
+.linkedin-btn:hover {
+  color: #fff;
+  border: 1px solid #0077b5;
+}
+.linkedin-btn:hover::before {
+  box-shadow: inset 0 0 0 10em #0077b5; /* Fills with Blue */
+}
+
+.retro-title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.cursor {
+    display: inline-block;
+    width: 12px;
+    height: 24px;
+    background-color: #333;
+    margin-left: 5px;
+    animation: blink 1s infinite;
+    vertical-align: text-bottom;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+
+
+/* --- RESPONSIVE NAVIGATION FIX --- */
+
+/* 1. TABLET VIEW (Hide Text Labels) 
+   When screen is smaller than 1024px, hide the text in buttons to save space.*/
+@media (max-width: 1024px) {
+    /* Hide the text inside all buttons */
+    .github-btn span, .linkedin-btn span, .bmc-btn span {
+        display: none;
+    }
+    .github-btn, .linkedin-btn, .bmc-btn{
+        padding: 8px; 
+        border-radius: 50%; 
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+    }
+    .github-btn svg, .linkedin-btn svg, .bmc-btn svg{
+        margin: 0; 
+    }
+}
+
+/* 2. MOBILE VIEW (Stack Everything) 
+   When screen is smaller than 768px (Phones), stack them vertically.*/
+@media (max-width: 768px) {
+    nav {
+        height: auto;
+        flex-direction: column;
+        padding: 15px 0;
+        gap: 15px;
+    }
+    .title {
+        position: static;
+        transform: none;
+        order: 1;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .title div {
+        font-size: 24px !important; 
+    }
+    .social-left {
+        order: 2; /* Socials second */
+        justify-content: center;
+        width: 100%;
+    }
+    nav > div:last-child {
+        order: 3; /* Actions last */
+        justify-content: center;
+        width: 100%;
+    }
 }
 
 div {
@@ -38,9 +250,9 @@ div {
     position: relative;
     width: 90%;
     max-width: 800px;    
-    height: 550px;
+    height: 600px;
     margin: 30px auto;   
-    
+    margin-top: 1%;
     background-color: #f0f0f0; 
     border: 2px solid #ccc;
     box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
@@ -129,19 +341,16 @@ h2{
     color: #666;
     margin-top: 15px;
 }
-
 .link-blue {
     color: #0000EE;
     font-weight: 600;
     cursor: pointer;
     transition: color 0.2s;
 }
-
 .link-blue:hover {
     color: #000;
     text-decoration: underline;
 }
-
 .link-blue:active {
     color: #551A8B;
 }
@@ -169,27 +378,25 @@ h2{
 }
 
 
-/* The Tiny Real Button (Now hidden in the corner) */
+/* The Tiny Button */
 .tiny-links {
     background: none;
     border: none;
-    color: #999;       /* Light grey to blend in */
+    color: #999;
     font-size: 11px;
     text-decoration: underline;
     cursor: pointer;
     padding: 5px;
-    
-    /* --- NEW POSITIONING LOGIC --- */
-    position:absolute;  /* Breaks it out of the flex stack */
-    bottom: 15px;        /* 15px from the bottom */
-    right: 15px;         /* 15px from the right */
-    opacity: 0.2;        
+    position:absolute; 
+    bottom: 15px;
+    right: 15px;
+    opacity: 0.2;      
     height: fit-content;
 }
 
 .tiny-links:hover {
     color: black !important;
-    opacity: 1 !important;      /* Fully visible when hovered */
+    opacity: 1 !important;
 }
 
 
@@ -207,11 +414,11 @@ h2{
   box-shadow: 0px 5px 0px 0px #146c54;
   cursor: pointer;
 }
-
 .button-3d:active {
   transform: translateY(5px);
   box-shadow: 0px 0px 0px 0px #a29bfe;
 }
+
 
 .white-btn{
     background-color:#f1f1f1; 
@@ -324,3 +531,178 @@ h2{
     display: flex;
 }
 
+
+
+/* --- CERTIFICATE STYLES --- */
+
+/* Import a nice serif font for the name */
+
+#cert-container {
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+.cert-border {
+    border: 10px double #333;
+    padding: 40px;
+    width: 85%;
+    height: 80%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Spreads content out nicely */
+    background: #fff;
+}
+
+.cert-header {
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 4px;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.cert-badge {
+    background: black;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cert-body {
+    text-align: center;
+}
+
+.cert-small {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.cert-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px; /* Big elegant text */
+    margin: 10px 0;
+    font-weight: 700;
+    color: #000;
+    border-bottom: 2px solid #eee;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.cert-text {
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 500px;
+    margin: 0 auto;
+    color: #444;
+}
+
+.cert-footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    align-items: flex-end;
+}
+
+.sign-box {
+    text-align: center;
+    width: 150px;
+}
+
+.sign-box .line {
+    border-top: 1px solid #333;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.sign-box small {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.signature {
+    font-family: 'Playfair Display', serif; /* Looks like handwriting */
+    font-style: italic;
+    font-size: 18px;
+    margin: 0;
+}
+
+.cert-stamp {
+    border: 3px solid #d32f2f;
+    color: #d32f2f;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 50%;
+    transform: rotate(-15deg);
+    opacity: 0.8;
+    font-family: 'Courier New', monospace;
+}
+
+.download-btn {
+    margin-top: 20px;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.download-btn:hover {
+    background: #000;
+}
+
+/* --- PRINT SETTINGS (Crucial for PDF) --- */
+@media print {
+    body * {
+        visibility: hidden; /* Hide everything */
+    }
+    #cert-container, #cert-container * {
+        visibility: visible; /* Show only certificate */
+    }
+    #cert-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        justify-content: flex-start; /* Align to top for printing */
+        padding-top: 50px;
+    }
+    .game-area {
+        border: none !important;
+        box-shadow: none !important;
+        background: white !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .no-print {
+        display: none !important;
+    }
+    nav { display: none; }
+}
