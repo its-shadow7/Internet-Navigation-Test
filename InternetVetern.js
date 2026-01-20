@@ -1,5 +1,7 @@
-let lives = 3;
+let total_mistakes = 0;
 let current_level = 0;
+let dumb_repeats = 0;
+let last_clicked_element = null
 
 const gameArea = document.querySelector(".game-area");
 const body = document.querySelector("body");
@@ -13,19 +15,161 @@ function start_game(){
 function load_level(n){
     if (current_level < levels.length)
         gameArea.innerHTML = levels[current_level].html;
+    else show_input_screen();
 }
 
 
 function win(){
     current_level++;
     load_level(levels[current_level]);
+
 }
 
+document.addEventListener("click", e => {
+    if (e.target.classList.contains("win-btn")) {
+        win();
+    }
+    else if (e.target.classList.contains("damage-btn")){
+        damage();
+    }
+});
+
+
+function show_input_screen() {
+    const html = `
+    <div style="text-align: center; margin-top: 50px;">
+        <h1 style="color:green">🎉 CONGRATULATIONS! 🎉</h1>
+        <h2>You are a certified Internet Veteran.</h2>
+        <p>You survived the dark patterns, pop-ups, and fake buttons.</p>
+        <p>You made wrong submission <b>${total_mistakes} </b> times.</p>
+        <br>
+        <p>Enter your name for the records:</p>
+        <input type="text" id="playerName" placeholder="Your Name" 
+            style="padding: 10px; font-size: 18px; border: 2px solid black; border-radius: 5px; text-align: center;">
+        <br><br>
+        <button class="button-3d" onclick="generate_certificate()">Generate Certificate</button>
+    </div>
+    `;
+    // body.style.backgroundColor = "#ffde59";
+    gameArea.innerHTML = html;
+}
+
+function generate_certificate() {
+    const name = document.getElementById("playerName").value || "Anonymous User";
+    const date = new Date().toLocaleDateString();
+
+    // We use a specific ID 'cert-container' to style it perfectly in CSS
+    const certHTML = `
+    <div id="cert-container">
+        <div class="cert-border">
+            <div class="cert-header">CERTIFICATE</div>
+            <div class="cert-badge">☑ VERIFIED VETERAN</div>
+            
+            <div class="cert-body">
+                <p class="cert-small">This Certificate Is Presented To</p>
+                <h1 class="cert-name">${name}</h1>
+                <p class="cert-text">
+                    For successfully navigating the dark patterns, avoiding <b>${total_mistakes}</b> viruses, 
+                    and proving they are made of flesh and blood.
+                    <br><br>
+                    They are <b>NOT</b> a Robot.
+                </p>
+            </div>
+
+            <div class="cert-footer">
+                <div class="sign-box">
+                    <p class="signature">${date}</p>
+                    <div class="line"></div>
+                    <small>DATE</small>
+                </div>
+                
+                <div class="cert-stamp">PASSED</div>
+
+                <div class="sign-box">
+                    <p class="signature">The Internet</p>
+                    <div class="line"></div>
+                    <small>CERTIFIED BY</small>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="window.print()" class="no-print download-btn">
+            Download PDF
+        </button>
+    </div>
+    `;
+
+    gameArea.innerHTML = certHTML;
+    // Force white background for the certificate look
+    body.style.backgroundColor = "whitesmoke"; 
+}
+
+
+// function game_completed() {
+//     const victoryHTML = `
+//         <div style="text-align: center; margin-top: 50px;">
+//             <h1 style="color: green;">🎉 MISSION ACCOMPLISHED 🎉</h1>
+//             <p>You have survived the internet.</p>
+            
+//             <div style="margin: 20px 0;">
+//                 <p>Enter your name to receive your Veteran License:</p>
+//                 <input type="text" id="playerName" placeholder="Your Name" 
+//                     style="padding: 10px; font-size: 16px; border: 2px solid #333; width: 200px;">
+//             </div>
+
+//             <button onclick="generate_certificate()" 
+//                 style="padding: 10px 20px; background-color: #1A73E8; color: white; border: none; cursor: pointer; font-size: 16px;">
+//                 Get Certificate
+//             </button>
+//         </div>
+//     `;
+//     gameArea.innerHTML = victoryHTML;
+// }
+
+// function generate_certificate() {
+//     const name = document.getElementById("playerName").value || "Anonymous User";
+//     const date = new Date().toLocaleDateString();
+
+//     // This HTML is styled to look like a document
+//     const certHTML = `
+//         <div style="text-align: center; padding: 40px; border: 10px double #333; max-width: 700px; margin: 0 auto; background: white; color: black; font-family: 'Georgia', serif;">
+//             <h1 style="font-size: 40px; margin-bottom: 10px;">CERTIFICATE OF SURVIVAL</h1>
+//             <p>This certifies that</p>
+            
+//             <h2 style="font-size: 30px; text-decoration: underline; margin: 20px 0;">${name}</h2>
+            
+//             <p>Has successfully navigated the dark patterns, avoided the viruses,</p>
+//             <p>and proven themselves as a true</p>
+            
+//             <h3 style="font-size: 24px; color: #1A73E8;">INTERNET VETERAN</h3>
+            
+//             <div style="margin-top: 40px; display: flex; justify-content: space-between; padding: 0 50px;">
+//                 <div style="text-align: center;">
+//                     <p style="border-top: 1px solid black; padding-top: 5px;">${date}</p>
+//                     <small>Date</small>
+//                 </div>
+//                 <div style="text-align: center;">
+//                     <p style="border-top: 1px solid black; padding-top: 5px;">The Internet</p>
+//                     <small>Authority</small>
+//                 </div>
+//             </div>
+
+//             <br><br>
+//             <button onclick="window.print()" class="no-print" 
+//                 style="padding: 10px 20px; cursor: pointer; background: #333; color: white;">
+//                 🖨️ Print / Save as PDF
+//             </button>
+//         </div>
+//     `;
+    
+//     // Replace the game area with the certificate
+//     gameArea.innerHTML = certHTML;// Make background white for professional look
+// }
+
 function damage(){
-    lives--;
-    console.log(lives);
-    if (lives==0)
-        game_over()
+
+    total_mistakes++;
+
     gameArea.classList.add('damage-effect');
     body.style.backgroundColor = "red" ;
     // 3. REMOVE ANIMATION (after 0.5s)
@@ -35,9 +179,7 @@ function damage(){
     }, 400);
 }
 
-function game_over(){
-    console.log("game over");
-}
+
 
 
 function verifyBotanicalCaptcha() {
@@ -80,7 +222,7 @@ const levels=[{
             </div>
 
             <div class="popup-box">
-                <div class="tiny-links close-x" style="text-decoration: none; font-size: 20px; opacity:0.18;"  onclick="win()">✕</div>
+                <div class="tiny-links close-x win-btn" style="text-decoration: none; font-size: 20px; opacity:0.18;"  >✕</div>
                 <div class="" style ="margin-left: 2%;"><img src="https://cdn-icons-png.flaticon.com/256/2206/2206322.png" height="80x"></div>
                 <h3 style="margin: 1px 0;">Security Check</h3>
                 <p style="font-size: 14px; color: #555; line-height: 1.4;">
@@ -184,7 +326,7 @@ const levels=[{
                 File size: 2KB |
                 <span class="link-blue" onclick="alert('Link Expired')">Mirror Link 1</span> |
                 <span class="link-blue" onclick="alert('Link Expired')">Mega</span> |
-                <span class="link-blue" onclick="win()">Mediafire</span>
+                <span class="link-blue win-btn" >Mediafire</span>
             </p>
         </div>`
 },
@@ -201,7 +343,7 @@ const levels=[{
                 Yes, Accept all cookies </button>
             <button class="button-3d" onclick="damage()">
                 Yes, Accept some cookies </button>
-            <button class="tiny-links" onclick="win()">
+            <button class="tiny-links win-btn">
                 Reject All / Settings </button>
         </div>`
     }, {
@@ -213,7 +355,7 @@ const levels=[{
                 <img src="https://cdn-icons-png.flaticon.com/512/1076/1076928.png" height="60px" style="margin-bottom: 15px;">
                 <h3 style="margin: 0 0 10px 0;">Wait! Don't go!</h3>
                 <p style="font-size: 14px; color: #555;">If you leave, you'll miss out on our daily spam... er, amazing offers! Are you sure?</p>    
-                <button class="button-3d" style="width: 100%; margin-top: 15px;" onclick="win()">
+                <button class="button-3d win-btn" style="width: 100%; margin-top: 15px;">
                     Yes, I hate saving money and I want to be sad.
                 </button>
                 <div class="tiny-links" onclick="damage()" style="margin-top: 20px; font-size: 11px; color: #999; position:inherit;opacity :1;">
@@ -244,7 +386,7 @@ const levels=[{
                         <button onclick="damage()" style="background: #d32f2f; color: white; border: 1px solid #b71c1c; padding: 5px 15px; cursor: pointer;">Remove Virus</button>
                     </div>
 
-                    <div class="tiny-links" onclick="win()" style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);
+                    <div class="tiny-links win-btn" style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);
                         color: #999 !important; opacity: 0; pointer-events: none; animation: revealBtn 0s 6s forwards;">
                         No Thanks (Close Window) </div>
                 </div>
@@ -265,7 +407,7 @@ const levels=[{
                 DOWNLOAD
             </button>
 
-            <div onclick="win()" style="
+            <div class="win-btn" style="
                 position: absolute; 
                 bottom: 20px; 
                 width: 100%; 
@@ -383,7 +525,7 @@ const levels=[{
 
                 <div class="iphone-card" style="background: white; width: 320px; border-radius: 10px; padding: 20px; text-align: center; position: relative; box-shadow: 0 0 50px rgba(255,255,255,0.5);">
                     
-                    <div onclick="win()" style="position: absolute; top: 10px; right: 10px; color: #aaa; cursor: pointer; font-family: sans-serif; font-weight: bold; padding: 5px;">✕</div>
+                    <div class="win-btn" style="position: absolute; top: 10px; right: 10px; color: #aaa; cursor: pointer; font-family: sans-serif; font-weight: bold; padding: 5px;">✕</div>
 
                     <h2 style="color: #d32f2f; margin: 0; font-size: 24px;">CONGRATULATIONS!</h2>
                     <p style="font-size: 12px; color: #555;">You are today's lucky winner!</p>
@@ -451,7 +593,7 @@ const levels=[{
 //                     <button class="num-btn" onclick="damage()">5</button>
 //                     <button class="num-btn" onclick="damage()">6</button>
                     
-//                     <button class="num-btn" onclick="win()" style="background: #e8f0fe; color: #1967d2;">7</button>
+//                     <button class="num-btn win-btn"  style="background: #e8f0fe; color: #1967d2;">7</button>
                     
 //                     <button class="num-btn" onclick="damage()">8</button>
 //                     <button class="num-btn" onclick="damage()">9</button>
@@ -526,7 +668,7 @@ const levels=[{
 //                     <button style="padding: 5px 15px;" onclick="damage()">Next ></button>
 //                 </div>
                 
-//                 <p style="font-size: 10px; color: blue; text-decoration: underline; cursor: pointer; text-align: right; margin-top: 5px;" onclick="win()">
+//                 <p class="win-btn" style="font-size: 10px; color: blue; text-decoration: underline; cursor: pointer; text-align: right; margin-top: 5px;">
 //                     Skip all offers
 //                 </p>
 //             </div>
@@ -584,4 +726,5 @@ const levels=[{
 // }]
 
 start_game();
+
 
