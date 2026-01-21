@@ -1,25 +1,24 @@
 let total_mistakes = 0;
 let current_level = 0;
 let dumb_repeats = 0;
-let last_clicked_element = null
 
 const gameArea = document.querySelector(".game-area");
 const body = document.querySelector("body");
 
 
-function start_game(){
+function start_game() {
     load_level(0);
 }
 
 
-function load_level(n){
+function load_level(n) {
     if (current_level < levels.length)
         gameArea.innerHTML = levels[current_level].html;
     else show_input_screen();
 }
 
 
-function win(){
+function win() {
     current_level++;
     load_level(levels[current_level]);
 
@@ -29,7 +28,7 @@ document.addEventListener("click", e => {
     if (e.target.classList.contains("win-btn")) {
         win();
     }
-    else if (e.target.classList.contains("damage-btn")){
+    else if (e.target.classList.contains("damage-btn")) {
         damage();
     }
 });
@@ -48,9 +47,7 @@ function show_input_screen() {
             style="padding: 10px; font-size: 18px; border: 2px solid black; border-radius: 5px; text-align: center;">
         <br><br>
         <button class="button-3d" onclick="generate_certificate()">Generate Certificate</button>
-    </div>
-    `;
-    // body.style.backgroundColor = "#ffde59";
+    </div>`;
     gameArea.innerHTML = html;
 }
 
@@ -58,7 +55,6 @@ function generate_certificate() {
     const name = document.getElementById("playerName").value || "Anonymous User";
     const date = new Date().toLocaleDateString();
 
-    // We use a specific ID 'cert-container' to style it perfectly in CSS
     const certHTML = `
     <div id="cert-container">
         <div class="cert-border">
@@ -69,11 +65,12 @@ function generate_certificate() {
                 <p class="cert-small">This Certificate Is Presented To</p>
                 <h1 class="cert-name">${name}</h1>
                 <p class="cert-text">
-                    For successfully navigating the dark patterns, avoiding <b>${total_mistakes}</b> viruses, 
+                    For successfully navigating the dark patterns, avoiding <b>${levels.length}</b>+ viruses, 
                     and proving they are made of flesh and blood.
                     <br><br>
-                    They are <b>NOT</b> a Robot.
+                    They are a Certified Internet <b>EXPERT</b>.
                 </p>
+
             </div>
 
             <div class="cert-footer">
@@ -100,79 +97,14 @@ function generate_certificate() {
     `;
 
     gameArea.innerHTML = certHTML;
-    // Force white background for the certificate look
-    body.style.backgroundColor = "whitesmoke"; 
+    body.style.backgroundColor = "whitesmoke";
 }
 
 
-// function game_completed() {
-//     const victoryHTML = `
-//         <div style="text-align: center; margin-top: 50px;">
-//             <h1 style="color: green;">🎉 MISSION ACCOMPLISHED 🎉</h1>
-//             <p>You have survived the internet.</p>
-            
-//             <div style="margin: 20px 0;">
-//                 <p>Enter your name to receive your Veteran License:</p>
-//                 <input type="text" id="playerName" placeholder="Your Name" 
-//                     style="padding: 10px; font-size: 16px; border: 2px solid #333; width: 200px;">
-//             </div>
-
-//             <button onclick="generate_certificate()" 
-//                 style="padding: 10px 20px; background-color: #1A73E8; color: white; border: none; cursor: pointer; font-size: 16px;">
-//                 Get Certificate
-//             </button>
-//         </div>
-//     `;
-//     gameArea.innerHTML = victoryHTML;
-// }
-
-// function generate_certificate() {
-//     const name = document.getElementById("playerName").value || "Anonymous User";
-//     const date = new Date().toLocaleDateString();
-
-//     // This HTML is styled to look like a document
-//     const certHTML = `
-//         <div style="text-align: center; padding: 40px; border: 10px double #333; max-width: 700px; margin: 0 auto; background: white; color: black; font-family: 'Georgia', serif;">
-//             <h1 style="font-size: 40px; margin-bottom: 10px;">CERTIFICATE OF SURVIVAL</h1>
-//             <p>This certifies that</p>
-            
-//             <h2 style="font-size: 30px; text-decoration: underline; margin: 20px 0;">${name}</h2>
-            
-//             <p>Has successfully navigated the dark patterns, avoided the viruses,</p>
-//             <p>and proven themselves as a true</p>
-            
-//             <h3 style="font-size: 24px; color: #1A73E8;">INTERNET VETERAN</h3>
-            
-//             <div style="margin-top: 40px; display: flex; justify-content: space-between; padding: 0 50px;">
-//                 <div style="text-align: center;">
-//                     <p style="border-top: 1px solid black; padding-top: 5px;">${date}</p>
-//                     <small>Date</small>
-//                 </div>
-//                 <div style="text-align: center;">
-//                     <p style="border-top: 1px solid black; padding-top: 5px;">The Internet</p>
-//                     <small>Authority</small>
-//                 </div>
-//             </div>
-
-//             <br><br>
-//             <button onclick="window.print()" class="no-print" 
-//                 style="padding: 10px 20px; cursor: pointer; background: #333; color: white;">
-//                 🖨️ Print / Save as PDF
-//             </button>
-//         </div>
-//     `;
-    
-//     // Replace the game area with the certificate
-//     gameArea.innerHTML = certHTML;// Make background white for professional look
-// }
-
-function damage(){
-
+function damage() {
     total_mistakes++;
-
     gameArea.classList.add('damage-effect');
-    body.style.backgroundColor = "red" ;
-    // 3. REMOVE ANIMATION (after 0.5s)
+    body.style.backgroundColor = "red";
     setTimeout(() => {
         gameArea.classList.remove('damage-effect');
         body.style.backgroundColor = "rgb(255, 244, 228)";
@@ -183,37 +115,35 @@ function damage(){
 
 
 function verifyBotanicalCaptcha() {
-        const selected = document.querySelectorAll('.cap-tile.selected');
-        let correctCount = 0;
-        let failMsg = '';
+    const selected = document.querySelectorAll('.cap-tile.selected');
+    let correctCount = 0;
+    let failMsg = '';
 
-        selected.forEach(tile => {
-            if (tile.dataset.type === 'veg') {
-                correctCount++;
-            } else {
-                failMsg = tile.dataset.msg || 'Incorrect.';
-            }
-        });
-
-        if (failMsg !== '') {
-            // alert('Please try again.\nHint: ' + failMsg);
-            damage();
-            document
-                .querySelectorAll('.cap-tile.selected')
-                .forEach(t => t.classList.remove('selected'));
-        } else if (correctCount == 2) {
-            win();
+    selected.forEach(tile => {
+        if (tile.dataset.type === 'veg') {
+            correctCount++;
         } else {
-            // alert('Please select all matching images.');
-            damage();
+            failMsg = tile.dataset.msg || 'Incorrect.';
         }
-        console.log(correctCount + "corretCount")
+    });
+
+    if (failMsg !== '') {
+        damage();
+        document
+            .querySelectorAll('.cap-tile.selected')
+            .forEach(t => t.classList.remove('selected'));
+    } else if (correctCount == 2) {
+        win();
+    } else {
+        damage();
     }
+    console.log(correctCount + "corretCount")
+}
 
 
-const levels=[{
-    name : "I am a human",
-    html : `<div style="position: relative; width: 100%; height: 100%;">
+const levels = [{
+    name: "I am a human",
+    html: `<div style="position: relative; width: 100%; height: 100%;">
             <div class="blur-content">
                 <div style="text-align: center;">
                     <h1>Loading Content...</h1>
@@ -227,15 +157,15 @@ const levels=[{
                 <h3 style="margin: 1px 0;">Security Check</h3>
                 <p style="font-size: 14px; color: #555; line-height: 1.4;">
                     Click <b>"Allow"</b> to confirm you are not a robot.</p>
-                <button class="button-3d" style="width: 100%;" onclick="damage()">
+                <button class="button-3d damage-btn" style="width: 100%;">
                   Allow Notifications</button>
-                <button class="button-3d white-btn" style="width: 100%; margin-top: 10px;" onclick="damage()">
+                <button class="button-3d white-btn damage-btn" style="width: 100%; margin-top: 10px;">
                   Yes, I am a robot</button>
             </div>
         </div>`
-},{
-    name : "Find Real Download",
-    html : `<div class="container">
+}, {
+    name: "Find Real Download",
+    html: `<div class="container">
             <div class="level-text" style="font-size: 18px;">Level 2: Find the Real Download</div>
           <h2 style="color: #d32f2f; text-align: center; font-family: sans-serif; margin: 0 0 20px 0; font-size: 24px;">Select Carefully!!!!!!</h2>
           <button class="bar-btn" type="button" onclick="damage()">
@@ -331,22 +261,22 @@ const levels=[{
         </div>`
 },
 
-    {
-      name : "Cookies",
-      html : `<div class="container">
+{
+    name: "Cookies",
+    html: `<div class="container">
             <div class="level-text" style="font-size: 18px; margin-bottom: 20px;">Level 3: Cookies</div>
       
             <h2 style="font-family: sans-serif; margin-bottom: 20px;">Do you like cookies?<br>
               <img src="https://cdn-icons-png.flaticon.com/512/5473/5473473.png" height="50px" width="50px"></h2>
             
-            <button class="button-3d" onclick="damage()">
+            <button class="button-3d damage-btn">
                 Yes, Accept all cookies </button>
-            <button class="button-3d" onclick="damage()">
+            <button class="button-3d damage-btn">
                 Yes, Accept some cookies </button>
             <button class="tiny-links win-btn">
                 Reject All / Settings </button>
         </div>`
-    }, {
+}, {
     name: "Unsubscribe",
     html: `<div class="container">
             <div class="level-text">Level 4: Unsubscribe</div>
@@ -358,17 +288,17 @@ const levels=[{
                 <button class="button-3d win-btn" style="width: 100%; margin-top: 15px;">
                     Yes, I hate saving money and I want to be sad.
                 </button>
-                <div class="tiny-links" onclick="damage()" style="margin-top: 20px; font-size: 11px; color: #999; position:inherit;opacity :1;">
+                <div class="tiny-links damage-btn" style="margin-top: 20px; font-size: 11px; color: #999; position:inherit;opacity :1;">
                     No, I want to stay happy!
                 </div>
             </div>
         </div>`
-},{
+}, {
     name: "Virus Alert",
     html: `<div class="container" style="position: relative; width: 100%; height: 100%; background: #1a237e;">
             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; width: 350px; border-top: 30px solid #d32f2f; box-shadow: 0 20px 50px rgba(0,0,0,0.5); font-family: sans-serif; text-align: left;">
                 <div style="position: absolute; top: -22px; left: 10px; color: white; font-weight: bold; font-size: 14px;">System Warning</div>
-                <div onclick="damage()" style="position: absolute; top: -25px; right: 0; width: 30px; height: 30px; line-height: 25px; text-align: center; color: white; font-weight: bold; font-size: 18px; cursor: pointer;">
+                <div class="damage-btn" style="position: absolute; top: -25px; right: 0; width: 30px; height: 30px; line-height: 25px; text-align: center; color: white; font-weight: bold; font-size: 18px; cursor: pointer;">
                     ✕ </div>
                 
                 <div style="padding: 20px;">
@@ -382,8 +312,8 @@ const levels=[{
                     
                     <p style="font-size: 12px;">Contact Support: +1-555-SCAM-NOW</p>
                     <div style="text-align: right; margin-top: 20px; position: relative;">
-                        <button onclick="damage()" style="background: #ccc; border: 1px solid #999; padding: 5px 15px; cursor: pointer;">Cancel</button>
-                        <button onclick="damage()" style="background: #d32f2f; color: white; border: 1px solid #b71c1c; padding: 5px 15px; cursor: pointer;">Remove Virus</button>
+                        <button class="damage-btn" style="background: #ccc; border: 1px solid #999; padding: 5px 15px; cursor: pointer;">Cancel</button>
+                        <button class="damage-btn" style="background: #d32f2f; color: white; border: 1px solid #b71c1c; padding: 5px 15px; cursor: pointer;">Remove Virus</button>
                     </div>
 
                     <div class="tiny-links win-btn" style="position: absolute; bottom: 0px; left: 50%; transform: translateX(-50%);
@@ -401,8 +331,7 @@ const levels=[{
 
             <button id="runaway" 
                 onmouseover="const x = Math.random() * (300 - -300) + -300; const y = Math.random() * (200 - -200) + -200; this.style.transform = 'translate(' + x + 'px, ' + y + 'px)';"
-                class="button-3d" 
-                onclick="damage()"
+                class="button-3d damage-btn" 
                 style="position: absolute; top: 50%; left: 50%; transition: transform 0.1s ease; z-index: 10;">
                 DOWNLOAD
             </button>
@@ -426,6 +355,16 @@ const levels=[{
             </p>
         </div>`
 },{
+    name: "Reaction Time",
+    html: `
+    <div class="container" style="width:100%; height:100%; padding:0;">
+        <div class="rt-container rt-idle" onmousedown="rt_handleClick(this)">
+            <div class="rt-icon"><i class="fas fa-bolt" style="color: #FFD43B;"></i></div>
+            <h1>Reflex Check</h1>
+            <p>Click anywhere to start.</p>
+        </div>
+    </div>`
+}, {
     name: "Vegetable Captcha",
     html: `<div class="container" style="padding: 0; background:; width: 100%; display: flex; justify-content: center; align-items: center;">
             
@@ -492,7 +431,7 @@ const levels=[{
                     align-items: center; 
                     background: white;">
                     
-                    <div onclick="alert('Reloading images... (Not really)')" style="cursor: pointer; opacity: 0.6; transition: 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
+                    <div onclick="alert('Providing a hint, as this is a demo game: there are only two correct options')" style="cursor: pointer; opacity: 0.6; transition: 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.6'">
                         <svg viewBox="0 0 24 24" width="24" height="24" fill="black"><path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
                     </div>
 
@@ -514,9 +453,9 @@ const levels=[{
                 </div>
             </div>
         </div>`
-},{
-        name: "IPhone Scam",
-        html: `<div class="container" style="background: rgba(0,0,0,0.8); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+}, {
+    name: "IPhone Scam",
+    html: `<div class="container" style="background: rgba(0,0,0,0.8); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
                 
                 <style>
                     @keyframes popIn { 0% { transform: scale(0); } 80% { transform: scale(1.1); } 100% { transform: scale(1); } }
@@ -575,156 +514,64 @@ const levels=[{
                     </p>
                 </div>
         </div>`
-    }]
+}]
 
-// const levels = [{
-//     name: "Shuffling Keypad",
-//     html: `<div class="container">
-//             <div class="level-text">Level 7: Robot Check</div>
-            
-//             <div style="background: white; padding: 20px; border: 1px solid #ccc; border-radius: 10px; text-align: center;">
-//                 <h2 style="margin-top: 0;">3 + 4 = ?</h2>
+
+
+
+let rt_state = 'idle'; 
+let rt_timer = null;
+let rt_startTime = 0;
+
+function rt_handleClick(el) {
+    if (rt_state === 'idle') {
+        rt_state = 'waiting';
+        el.className = 'rt-container rt-waiting';
+        
+        el.innerHTML = '<div class="rt-icon"><i class="fas fa-bolt" style="color: #FFD43B;"></i></div><h1>Wait for Green...</h1>';
+        
+        const delay = Math.floor(Math.random() * 2000) + 2000;
+        
+        rt_timer = setTimeout(() => {
+            if (document.body.contains(el)) {
+                rt_state = 'go';
+                el.className = 'rt-container rt-go';
+                el.innerHTML = '<div class="rt-icon"><i class="fas fa-bolt"></i></div><h1>CLICK!</h1>';
                 
-//                 <div id="keypad" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; width: 200px;">
-//                     <button class="num-btn" onclick="damage()">1</button>
-//                     <button class="num-btn" onclick="damage()">2</button>
-//                     <button class="num-btn" onclick="damage()">3</button>
-//                     <button class="num-btn" onclick="damage()">4</button>
-//                     <button class="num-btn" onclick="damage()">5</button>
-//                     <button class="num-btn" onclick="damage()">6</button>
-                    
-//                     <button class="num-btn win-btn"  style="background: #e8f0fe; color: #1967d2;">7</button>
-                    
-//                     <button class="num-btn" onclick="damage()">8</button>
-//                     <button class="num-btn" onclick="damage()">9</button>
-//                 </div>
-//             </div>
+                requestAnimationFrame(() => {
+                    rt_startTime = Date.now();
+                });
+            }
+        }, delay);
+    } 
+
+    else if (rt_state === 'waiting') {
+        clearTimeout(rt_timer);
+        damage(); 
+        rt_state = 'idle';
+        el.className = 'rt-container rt-idle';
+        
+        el.innerHTML = '<div class="rt-icon"><i class="fas fa-exclamation-triangle"></i></div><h1>Too Soon!</h1><p>Click to try again.</p>';
+    } 
+    else if (rt_state === 'go') {
+        const endTime = Date.now();
+        const diff = endTime - rt_startTime;
+        
+        if (diff > 269) {
+            damage();
+            rt_state = 'idle';
+            el.className = 'rt-container rt-idle';
+            el.innerHTML = `<div class="rt-icon"><i class="fas fa-hourglass-end"></i></div><h1>${diff} ms</h1><p>Too Slow! (Aim for < 269ms)<br>Click to retry.</p>`;
+        } else {
+            el.innerHTML = `<div class="rt-icon"><i class="fa-solid fa-clock"></i></div><h1>${diff} ms</h1><p>Human Reflexes Verified.</p>`;
             
-//             <div onmouseover="
-//                 const container = this.previousElementSibling.querySelector('#keypad');
-//                 for (let i = container.children.length; i >= 0; i--) {
-//                     container.appendChild(container.children[Math.random() * i | 0]);
-//                 }
-//             " style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; pointer-events: none;">
-//                 </div>
+            rt_state = 'finished'; 
+            setTimeout(win, 1000);
+        }
+    }
+}
 
-//             <style>
-//                 .num-btn {
-//                     padding: 15px;
-//                     font-size: 18px;
-//                     cursor: pointer;
-//                     background: #eee;
-//                     border: 1px solid #ccc;
-//                     border-radius: 5px;
-//                 }
-//                 /* Shuffle trigger on hover */
-//                 .num-btn:hover {
-//                     /* This is a CSS hack to make them feel 'unstable' */
-//                     transform: scale(0.95);
-//                 }
-//             </style>
-            
-//             <div 
-//                 onmouseenter="
-//                     const k = document.getElementById('keypad');
-//                     /* Shuffle children */
-//                     for (let i = k.children.length; i >= 0; i--) {
-//                         k.appendChild(k.children[Math.random() * i | 0]);
-//                     }
-//                 "
-//                 style="position: absolute; top: 0; left: 0; width: 100%; height: 10px; /* Trigger bar at top just to mess with them initially */">
-//             </div>
-//         </div>`
-// },{
-//     name: "Software Installer",
-//     html: `<div class="container" style="text-align: left; align-items: flex-start; padding: 20px; width: 80%;">
-//             <div class="level-text">Level 3: Setup Wizard</div>
-//             <div style="border: 1px solid #999; background: #eee; padding: 10px; width: 100%;">
-//                 <h3 style="margin-top: 0;">Setup - SuperZip Archiver</h3>
-//                 <p style="font-size: 14px;">Choose your installation type:</p>
-                
-//                 <div style="background: white; padding: 10px; border: 1px solid #ccc; margin-bottom: 10px;">
-//                     <label style="display: flex; gap: 10px; cursor: pointer;">
-//                         <input type="radio" name="install" checked>
-//                         <div>
-//                             <strong>Express (Recommended)</strong><br>
-//                             <span style="font-size: 12px; color: #666;">Installs SuperZip and the "Ask.com" Toolbar browser extension.</span>
-//                         </div>
-//                     </label>
-//                 </div>
 
-//                 <div style="background: white; padding: 10px; border: 1px solid #ccc;">
-//                     <label style="display: flex; gap: 10px; cursor: pointer;">
-//                         <input type="radio" name="install">
-//                         <div>
-//                             <strong>Custom Installation</strong><br>
-//                             <span style="font-size: 12px; color: #666;">Choose which components to install.</span>
-//                         </div>
-//                     </label>
-//                 </div>
 
-//                 <div style="display: flex; justify-content: flex-end; margin-top: 20px; gap: 10px;">
-//                     <button style="padding: 5px 15px;" onclick="location.reload()">Cancel</button>
-//                     <button style="padding: 5px 15px;" onclick="damage()">Next ></button>
-//                 </div>
-                
-//                 <p class="win-btn" style="font-size: 10px; color: blue; text-decoration: underline; cursor: pointer; text-align: right; margin-top: 5px;">
-//                     Skip all offers
-//                 </p>
-//             </div>
-//         </div>`
-// },{
-//     name: "Terms of Service",
-//     html: `<div class="container" style="width: 80%;">
-//             <div class="level-text">Level 5: The Agreement</div>
-//             <h3 style="margin: 0;">Updated Terms of Service</h3>
-//             <p style="font-size: 12px; color: #666;">Please read carefully to continue.</p>
-            
-//             <div id="tos-box" style="width: 100%; height: 150px; overflow-y: scroll; background: white; border: 1px solid #ccc; padding: 10px; font-size: 12px; margin-bottom: 15px; text-align: left;">
-//                 <p><strong>1. Data Usage</strong><br>We will sell your data to everyone.</p>
-//                 <p><strong>2. Soul Ownership</strong><br>By clicking agree, you grant us rights to your soul.</p>
-//                 <p><strong>3. Hidden Fees</strong><br>We will charge $50/month for 'Air Usage'.</p>
-//                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-//                 <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-//                 <p><strong>4. The Exit</strong><br>If you actually read this far, you are a true veteran.</p>
-                
-//                 <button onclick="win()" style="background: #333; color: white; border: none; padding: 5px 10px; cursor: pointer; margin-top: 20px;">
-//                     I Decline (Continue Game)
-//                 </button>
-//                 <br><br>
-//             </div>
-
-//             <button class="button-3d" style="width: 100%;" onclick="damage()">
-//                 I Agree to Everything
-//             </button>
-//         </div>`
-// },{
-//     name: "Captcha",
-//     html: `<div class="container">
-//             <div class="level-text">Level 6: Verify You Are Human</div>
-            
-//             <div style="background: white; padding: 15px; border: 1px solid #ccc; width: 300px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-//                 <div style="background: #1A73E8; color: white; padding: 15px; margin: -15px -15px 15px -15px;">
-//                     <h3 style="margin: 0;">Select all images with a</h3>
-//                     <h1 style="margin: 0; font-size: 28px;">BICYCLE</h1>
-//                     <p style="margin: 0; font-size: 12px;">Click verify once there are none left.</p>
-//                 </div>
-
-//                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;">
-//                     <img src="https://cdn-icons-png.flaticon.com/512/171/171257.png" onclick="damage()" style="width: 100%; background: #eee; cursor: pointer;">
-//                     <img src="https://cdn-icons-png.flaticon.com/512/2554/2554933.png" onclick="damage()" style="width: 100%; background: #eee; cursor: pointer;">
-//                     <img src="https://cdn-icons-png.flaticon.com/512/2003/2003789.png" onclick="damage()" style="width: 100%; background: #eee; cursor: pointer;">
-//                 </div>
-
-//                 <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
-//                     <button onclick="win()" style="background: none; border: none; color: #1A73E8; font-weight: bold; cursor: pointer;">SKIP</button>
-                    
-//                     <button onclick="damage()" style="background: #1A73E8; color: white; border: none; padding: 8px 20px; font-weight: bold; border-radius: 3px; cursor: pointer;">VERIFY</button>
-//                 </div>
-//             </div>
-//         </div>`
-// }]
 
 start_game();
-
-
