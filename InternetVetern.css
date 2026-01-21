@@ -24,7 +24,7 @@ nav {
 
 
 
-/* --- Social Icons (Left) --- */
+/* Social Icons (Left) */
 .social-left {
     display: flex;
     gap: 15px;
@@ -40,21 +40,21 @@ nav {
     opacity: 1;
 }
 
-/* --- Buy Me a Coffee Button --- */
+/* Buy Me a Coffee Button */
 .bmc-btn {
-  background-color: #FFDD00 !important; /* Official Yellow */
-  color: #000000 !important;            /* Black Text */
+  background-color: #FFDD00 !important;
+  color: #000000 !important;
   font-family: 'Cookie', cursive !important;
-  font-size: 26px;      
-  line-height: 26px;    
+  font-size: 26px;
+  line-height: 26px;
   letter-spacing: 0.5px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 20px;    /* Tweak padding for perfect height */
+  padding: 8px 20px;
   border-radius: 50px;
   border: none !important;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.1); /* Subtle shadow like the original */
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -83,19 +83,18 @@ nav {
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  border: 1px solid black;       /* Black Border */
+  border: 1px solid black;
   border-radius: 25px;
   outline: none;
   overflow: hidden;
-  color: black;                  /* Black Text */
+  color: black;
   transition: color 0.3s 0.1s ease-out;
   text-align: center;
   font-family: sans-serif;
-  margin-right: 10px;           /* Gap between buttons */
+  margin-right: 10px;
 }
 .github-btn span { margin: 10px; }
-
-/* The Fill Animation */
+/* Animation */
 .github-btn::before {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -114,11 +113,11 @@ nav {
   border: 1px solid #333;
 }
 .github-btn:hover::before {
-  box-shadow: inset 0 0 0 10em #333; /* Fills with Black */
+  box-shadow: inset 0 0 0 10em #333;
 }
 
 
-/* --- LinkedIn Button (Blue) --- */
+/* LinkedIn Button (Blue) */
 .linkedin-btn {
     background-color: transparent;
     background-color: white;
@@ -130,18 +129,17 @@ nav {
   font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  border: 1px solid #0077b5;    /* LinkedIn Blue Border */
+  border: 1px solid #0077b5;
   border-radius: 25px;
   outline: none;
   overflow: hidden;
-  color: #004182;               /* LinkedIn Blue Text */
+  color: #004182;
   transition: color 0.3s 0.1s ease-out;
   text-align: center;
   font-family: sans-serif;
 }
 .linkedin-btn span { margin: 10px; }
-
-/* The Fill Animation */
+/* Animation */
 .linkedin-btn::before {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -160,9 +158,10 @@ nav {
   border: 1px solid #0077b5;
 }
 .linkedin-btn:hover::before {
-  box-shadow: inset 0 0 0 10em #0077b5; /* Fills with Blue */
+  box-shadow: inset 0 0 0 10em #0077b5;
 }
 
+/* Title */
 .retro-title {
     font-family: 'Courier New', Courier, monospace;
     font-size: 28px;
@@ -171,7 +170,6 @@ nav {
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-
 .cursor {
     display: inline-block;
     width: 12px;
@@ -181,7 +179,6 @@ nav {
     animation: blink 1s infinite;
     vertical-align: text-bottom;
 }
-
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
@@ -189,10 +186,8 @@ nav {
 
 
 
-/* --- RESPONSIVE NAVIGATION FIX --- */
-
-/* 1. TABLET VIEW (Hide Text Labels) 
-   When screen is smaller than 1024px, hide the text in buttons to save space.*/
+/* Media Queries for mobile and tablet */
+/* 1. TABLET VIEW (Hide Text Labels)*/
 @media (max-width: 1024px) {
     /* Hide the text inside all buttons */
     .github-btn span, .linkedin-btn span, .bmc-btn span {
@@ -210,8 +205,7 @@ nav {
     }
 }
 
-/* 2. MOBILE VIEW (Stack Everything) 
-   When screen is smaller than 768px (Phones), stack them vertically.*/
+/* 2. MOBILE VIEW (Stack Everything)*/
 @media (max-width: 768px) {
     nav {
         height: auto;
@@ -230,21 +224,24 @@ nav {
         font-size: 24px !important; 
     }
     .social-left {
-        order: 2; /* Socials second */
+        order: 2; 
         justify-content: center;
         width: 100%;
     }
     nav > div:last-child {
-        order: 3; /* Actions last */
+        order: 3;
         justify-content: center;
         width: 100%;
     }
 }
 
+
+
 div {
     display: block;
     unicode-bidi: isolate;
 }
+
 
 .game-area {
     position: relative;
@@ -437,8 +434,7 @@ h2{
     margin-bottom: 25px;
 }
 
-/* --- LEVEL 0: ROBOT CHECK --- */
-/* The Popup Box */
+/* LEVEL 1: ROBOT CHECK */
 .popup-box {
     position: absolute;
     top: 50%;
@@ -454,14 +450,11 @@ h2{
     font-family: 'Arial', sans-serif;
     border: 1px solid #ddd;
 }
-
 .close-x {
     position: absolute;
     top: 10px;
     right: 15px;
 }
-
-/* Background Blur helper */
 .blur-content {
     filter: blur(5px);
     pointer-events: none;
@@ -474,7 +467,7 @@ h2{
     color: #888;
 }
 
-/*Animation for buttons appearing after a while */
+/* Virus LeveL */
 @keyframes revealBtn {
     0%   { opacity: 0; pointer-events: none; }
     99%  { opacity: 0; pointer-events: none; }
@@ -507,7 +500,7 @@ h2{
     height: 22px;
     background: #4A90E2;
     border-radius: 50%;
-    display: none; /* Hidden */
+    display: none;
     align-items: center;
     justify-content: center;
     border: 2px solid white;
@@ -558,7 +551,7 @@ h2{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* Spreads content out nicely */
+    justify-content: space-between;
     background: #fff;
 }
 
@@ -675,13 +668,14 @@ h2{
     background: #000;
 }
 
+
 /* --- PRINT SETTINGS (Crucial for PDF) --- */
 @media print {
     body * {
-        visibility: hidden; /* Hide everything */
+        visibility: hidden;
     }
     #cert-container, #cert-container * {
-        visibility: visible; /* Show only certificate */
+        visibility: visible;
     }
     #cert-container {
         position: absolute;
@@ -691,7 +685,7 @@ h2{
         height: 100%;
         margin: 0;
         padding: 0;
-        justify-content: flex-start; /* Align to top for printing */
+        justify-content: flex-start;
         padding-top: 50px;
     }
     .game-area {
@@ -705,4 +699,39 @@ h2{
         display: none !important;
     }
     nav { display: none; }
+}
+
+
+
+
+/* --- LEVEL: REACTION TIME --- */
+.rt-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.1s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.rt-icon {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+.rt-idle {
+    background-color: #2b87d1; 
+    color: white;
+}
+.rt-waiting {
+    background-color: #ce2636;
+    color: white;
+}
+.rt-go {
+    background-color: #4bdb6a;
+    color: white;
 }
