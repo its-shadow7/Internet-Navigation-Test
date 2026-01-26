@@ -62,20 +62,14 @@ To play or modify the game on your local machine:
 
 | Main Menu | The Certificate |
 |:---:|:---:|
-| *(Add Screenshot)* | *(Add Screenshot)* |
+| <img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/e7e26b92-c533-4b37-9262-513f1018f876" />
+ | <img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/9a5cc4f0-2901-4a2c-a78d-b8519c998210" />
+ |
 
 ## 📄 Certificate & Printing
 
 The project utilizes specific CSS print media queries (`@media print`). When you complete the game and click **"Download PDF"**, the browser hides the game interface and only renders the high-resolution certificate for a clean export.
 
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-1.  Fork the project.
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4.  Push to the branch (`git push origin feature/AmazingFeature`).
-5.  Open a Pull Request.
 
 ## 👤 Author
 
