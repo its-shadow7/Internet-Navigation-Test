@@ -10,7 +10,7 @@
 
 ## 🎮 Play the Game
 
-**[🔴 Live Demo Link Here](https://your-username.github.io/InternetVeteran)**
+**[🔴 Live Demo Link Here](https://its-shadow7.github.io/Internet-Navigation-Test/)**
 
 ## ✨ Features
 
